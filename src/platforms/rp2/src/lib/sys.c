@@ -43,11 +43,7 @@
 #include <otp_socket.h>
 #endif
 
-#if defined(MBEDTLS_VERSION_NUMBER) && (MBEDTLS_VERSION_NUMBER >= 0x03000000)
-#include <mbedtls/build_info.h>
-#else
-#include <mbedtls/config.h>
-#endif
+#include <mbedtls/version.h>
 
 // libAtomVM
 #include <avmpack.h>
@@ -408,6 +404,7 @@ void sys_unregister_listener_from_event(GlobalContext *global, listener_event_t 
 
 // TODO: enable mbedtls threading support by defining MBEDTLS_THREADING_ALT
 // and remove this function.
+#if MBEDTLS_VERSION_NUMBER < 0x04000000
 int sys_mbedtls_entropy_func(void *entropy, unsigned char *buf, size_t size)
 {
 #ifndef MBEDTLS_THREADING_C
@@ -474,6 +471,7 @@ void sys_mbedtls_ctr_drbg_context_unlock(GlobalContext *global)
     struct RP2PlatformData *platform = global->platform_data;
     SMP_MUTEX_UNLOCK(platform->random_mutex);
 }
+#endif
 
 #ifndef AVM_NO_JIT
 ModuleNativeEntryPoint sys_map_native_code(const uint8_t *native_code, size_t size, size_t offset)
