@@ -195,6 +195,10 @@ jobs:
           elixir_version: "1.18"
           rebar3_version: "3.24.0"
 
+        - otp: "27"
+          elixir_version: "1.19"
+          rebar3_version: "3.24.0"
+
         # Old versions of OTP/Elixir
         - container: "ubuntu:20.04"
           cc: "cc"
