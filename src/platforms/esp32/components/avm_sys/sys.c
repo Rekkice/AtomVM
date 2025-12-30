@@ -29,6 +29,8 @@
 #include "otp_socket.h"
 #include "scheduler.h"
 #include "utils.h"
+#include <sys/stat.h>
+#include <unistd.h>
 
 // #define ENABLE_TRACE
 #include "trace.h"
