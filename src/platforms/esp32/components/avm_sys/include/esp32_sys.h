@@ -32,10 +32,10 @@
 
 // Include version.h to get MBEDTLS_VERSION_NUMBER (available in all versions)
 #include <mbedtls/version.h>
-
-#if MBEDTLS_VERSION_NUMBER >= 0x04000000
+#if defined(MBEDTLS_PSA_CRYPTO_C) || MBEDTLS_VERSION_NUMBER >= 0x04000000
 #include <psa/crypto.h>
-#else
+#endif
+#if MBEDTLS_VERSION_NUMBER < 0x04000000
 #include <mbedtls/ctr_drbg.h>
 #include <mbedtls/entropy.h>
 #endif
