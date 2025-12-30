@@ -82,9 +82,8 @@ struct ESP32PlatformData
 #if MBEDTLS_VERSION_NUMBER < 0x04000000
     mbedtls_entropy_context entropy_ctx;
 #else
-    dummy entropy_ctx;
+    char entropy_ctx;
 #endif
-
     bool entropy_is_initialized;
 
 #ifndef AVM_NO_SMP
@@ -93,7 +92,7 @@ struct ESP32PlatformData
 #if MBEDTLS_VERSION_NUMBER < 0x04000000
     mbedtls_ctr_drbg_context random_ctx;
 #else
-    dummy random_ctx;
+    char random_ctx;
 #endif
     bool random_is_initialized;
 
