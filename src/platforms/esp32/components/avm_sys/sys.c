@@ -283,6 +283,13 @@ void sys_init_platform(GlobalContext *glb)
     platform->entropy_is_initialized = false;
     platform->random_is_initialized = false;
 
+#if defined(MBEDTLS_PSA_CRYPTO_C) || MBEDTLS_VERSION_NUMBER >= 0x04000000
+    psa_status_t status = psa_crypto_init();
+    if (UNLIKELY(status != PSA_SUCCESS)) {
+        AVM_ABORT();
+    }
+#endif
+
     ErlNifResourceFlags flags;
     ErlNifEnv env;
     erl_nif_env_partial_init_from_globalcontext(&env, glb);
