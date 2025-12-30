@@ -30,6 +30,7 @@
 #include <term.h>
 #include <term_typedef.h>
 
+#include <mbedtls/version.h>
 #if MBEDTLS_VERSION_NUMBER < 0x04000000
 #include <mbedtls/cipher.h>
 #include <mbedtls/ctr_drbg.h>
@@ -39,7 +40,6 @@
 #include <mbedtls/sha256.h>
 #include <mbedtls/sha512.h>
 #endif
-#include <mbedtls/version.h>
 #if MBEDTLS_VERSION_NUMBER >= 0x04000000
 #include <psa/crypto.h>
 #endif
