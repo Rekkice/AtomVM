@@ -306,7 +306,7 @@ void sys_free_platform(GlobalContext *glb)
             AVM_ABORT();
         }
     }
-
+#if MBEDTLS_VERSION_NUMBER < 0x04000000
     if (platform->random_is_initialized) {
         mbedtls_ctr_drbg_free(&platform->random_ctx);
     }
@@ -314,6 +314,7 @@ void sys_free_platform(GlobalContext *glb)
     if (platform->entropy_is_initialized) {
         mbedtls_entropy_free(&platform->entropy_ctx);
     }
+#endif
 
 #ifndef AVM_NO_SMP
     smp_mutex_destroy(platform->entropy_mutex);

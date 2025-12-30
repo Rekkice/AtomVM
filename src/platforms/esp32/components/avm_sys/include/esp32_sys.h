@@ -79,13 +79,22 @@ struct ESP32PlatformData
 #ifndef AVM_NO_SMP
     Mutex *entropy_mutex;
 #endif
+#if MBEDTLS_VERSION_NUMBER < 0x04000000
     mbedtls_entropy_context entropy_ctx;
+#else
+    dummy entropy_ctx;
+#endif
+
     bool entropy_is_initialized;
 
 #ifndef AVM_NO_SMP
     Mutex *random_mutex;
 #endif
+#if MBEDTLS_VERSION_NUMBER < 0x04000000
     mbedtls_ctr_drbg_context random_ctx;
+#else
+    dummy random_ctx;
+#endif
     bool random_is_initialized;
 
 #ifdef CONFIG_AVM_ENABLE_STORAGE_NIFS
