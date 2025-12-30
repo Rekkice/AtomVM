@@ -30,8 +30,15 @@
 #include <spi_flash_mmap.h>
 #endif
 
+// Include version.h to get MBEDTLS_VERSION_NUMBER (available in all versions)
+#include <mbedtls/version.h>
+
+#if MBEDTLS_VERSION_NUMBER >= 0x04000000
+#include <psa/crypto.h>
+#else
 #include <mbedtls/ctr_drbg.h>
 #include <mbedtls/entropy.h>
+#endif
 
 #include <sys/poll.h>
 #include <stdbool.h>
