@@ -15,8 +15,8 @@
 #
 dependencies:
   atomgl:
-    git: https://github.com/atomvm/atomgl
-    version: "main"
+    git: https://github.com/Rekkice/atomgl
+    version: "push-znzqlvuqskyu"
   # atomvm_mqtt_client:
   #   git: https://github.com/atomvm/atomvm_mqtt_client
   #   version: "main"
